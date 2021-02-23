@@ -18,7 +18,7 @@ public class PermutationCombination {
 		for (Entry<String, String> m : map.entrySet()) {
 			
 			possibleWords.add(m.getKey());
-			System.out.println(m.getKey());
+			//System.out.println(m.getKey());
 		}
 		
 		return possibleWords;
