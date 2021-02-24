@@ -14,9 +14,12 @@ import org.mockito.junit.MockitoRule;
 
 public class DictionaryTest {
 	
+	public String[] listofWords = {"row", "ring", "know", "now", "work","working"};
 	Dictionary dic = null;
+	ArrayList<String> mockList = new ArrayList<String>();
+	
 	@Mock
-	DictionaryService service = Mockito.mock(DictionaryService.class);
+	DictionaryService service;
 	
 	@Rule public MockitoRule rule = MockitoJUnit.rule(); 
 	
@@ -27,20 +30,24 @@ public class DictionaryTest {
 	public void doSetup() {
 		dic = new Dictionary(service);
 		
+	      for(String text:listofWords) {
+	    	  mockList.add(text.toLowerCase());
+	      }
+		
 	}
 	
 	@Test	
 	public void testIsEnglishWord() {
 		
-		String[] array = {"row", "ring", "know", "now", "work"};
 		
-		ArrayList<String> mockList = new ArrayList<String>();
-	      for(String text:array) {
-	    	  mockList.add(text.toLowerCase());
-	      }
-	      
+	   
 		when(service.getDictionary()).thenReturn(mockList);
 		
-		assertEquals(true, dic.isEnglishWord("working"));
+		when(service.isEnglish("working",listofWords)).thenReturn(dic.isThisEnglish("working"));
+		assertEquals(true,service.isEnglish("working",listofWords));
+		assertEquals(true, dic.substrings("working"));
+		
 	}
+	
+	
 }

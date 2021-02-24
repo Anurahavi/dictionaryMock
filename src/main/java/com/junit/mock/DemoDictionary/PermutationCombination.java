@@ -16,9 +16,10 @@ public class PermutationCombination {
 		permute("", s);
 		
 		for (Entry<String, String> m : map.entrySet()) {
-			
+			if(!m.getKey().equals(s)) {
 			possibleWords.add(m.getKey());
 			//System.out.println(m.getKey());
+		}
 		}
 		
 		return possibleWords;

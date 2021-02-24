@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Dictionary {
 
-	String[] wordList;
+	public String[] listofWords = {"row", "ring", "know", "now", "work","working"};
 	DictionaryService service;
 	
 	public Dictionary(DictionaryService service) {
@@ -15,17 +15,35 @@ public class Dictionary {
 		return service.getDictionary();
 	}
 	
-	public Boolean isEnglishWord(String word) {
+	public boolean isEnglish(String word,String[] words) {
+		return service.isEnglish(word,words);
+	}
+	
+	public boolean isThisEnglish(String word) {
+        for (String w : listofWords) {
+            if (w.equals(word.toLowerCase())) {
+                System.out.println(word + " is a valid english word");
+                return true;
+            }
+        }
+        return false;
+    }
+	
+	
+	public Boolean substrings(String word) {
 		
 		PermutationCombination pc = new PermutationCombination();
 		
 		ArrayList <String> possibleWords = pc.getPossibleWords(word);
 		
+	
 		ArrayList<String> listTwo = getDictionary();
          
 		possibleWords.retainAll(listTwo);
+	
         
 		System.out.println(possibleWords);
+		
 		
 		if(possibleWords.size() > 0) {
 			return true;

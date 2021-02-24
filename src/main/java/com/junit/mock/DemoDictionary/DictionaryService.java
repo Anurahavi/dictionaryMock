@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface DictionaryService {
 	ArrayList <String> getDictionary();
-	boolean isEnglishWord(String word);
+	boolean isEnglish(String word,String [] words);
 
 }
